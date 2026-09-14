@@ -1,22 +1,19 @@
 # Sample Contract
 
-Foundry project of small Solidity `^0.8.20` contracts that each contain an intentional vulnerability. Use them for audit practice, not production.
+Foundry project with a single Solidity `^0.8.20` contract that contains several intentional vulnerabilities. Audit practice only — do not deploy this as a real bank.
 
-Solidity **0.8.26** (`foundry.toml`). Built-in overflow checks are on unless a contract uses `unchecked`.
+Compiled with **0.8.26**.
 
-## Contracts
+## `SampleContract`
 
-| Contract | Vulnerability |
+| Function | Vulnerability |
 |---|---|
-| `InsecureVault` | Reentrancy — balance is zeroed after the ETH call |
-| `UnprotectedToken` | Missing access control on `mint`; `tx.origin` auth |
-| `GuessTheSecret` | Predictable on-chain randomness |
-| `ReplayableMarket` | Signature replay (no nonce / deadline / chain id) |
-| `UnsafeProxy` | Unrestricted `delegatecall` overwrites storage |
-| `SpotPricedPool` | Spot-price oracle can be donated against |
-| `SilentTokenBank` | ERC-20 return values are ignored |
-| `InflationVault` | First-depositor share inflation |
-| `UncheckedWallet` | `unchecked` subtraction wraps the balance |
+| `withdraw` | Reentrancy — balance is zeroed after the ETH call |
+| `mint` | Missing access control |
+| `changeOwner` | `tx.origin` authentication |
+| `play` | Predictable on-chain randomness |
+| `transfer` | `unchecked` subtraction wraps the balance |
+| `claimWithSignature` | Signature replay (no nonce / deadline / chain id) |
 
 ## Commands
 
