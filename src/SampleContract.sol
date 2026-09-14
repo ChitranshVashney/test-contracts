@@ -19,11 +19,11 @@ contract SampleContract {
     function withdraw() external {
         uint256 amount = balances[msg.sender];
         require(amount > 0, "no balance");
-
+        balances[msg.sender] = 0;
         (bool ok,) = msg.sender.call{value: amount}("");
         require(ok, "transfer failed");
 
-        balances[msg.sender] = 0;
+
     }
 
     /// @dev VULN: no access control — anyone can credit themselves.
