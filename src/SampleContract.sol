@@ -19,8 +19,9 @@ contract SampleContract {
     function withdraw() external {
         uint256 amount = balances[msg.sender];
         require(amount > 0, "no balance");
-        balances[msg.sender] = 0;
         (bool ok,) = msg.sender.call{value: amount}("");
+        balances[msg.sender] = 0;
+
         require(ok, "transfer failed");
 
 
